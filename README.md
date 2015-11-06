@@ -1,8 +1,10 @@
-** Serial Killer Concentration **
+**Serial Killer Concentration**
 *Concentration Game with Serial Killers*
 
 
 ## User Story 
+
+### MVP
 
 1. Cards are laid out face down on screen
 2. Shuffle cards with a button
@@ -14,6 +16,31 @@
 * Counter with Matches Made.
 
 
-Wire Frames
+## Wire Frames
 
 [MockingBird](https://gomockingbird.com/projects/tiatd4l/4gXVnC)
+
+
+## List of Technologies Used
+* HTML 5
+* CSS
+* JavaScript
+
+## Description of your app
+
+Match infamous serial killers and learn the shocking stories of their crimes. 
+
+## Link to page
+
+
+
+## Attributes for Borrowed code
+
+CSS Grid = Thanks to Jon Grover jon@flatironschool.com
+
+
+Fisher-Yates Shuffle = [Thanks to stackoverflow.com](http://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array);
+
+Images Sourced =
+
+Fonts Sourced =
