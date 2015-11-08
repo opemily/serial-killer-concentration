@@ -26,8 +26,9 @@ var serialKillers = [
         {class: 'ted-bundy', name: 'Ted Bundy', img: 'images/portraits/ted-bundy.jpg', bio: 'Ted Bundy was born November 24, 1946, in Burlington, Vermont. In the 1970s, he raped and murdered young women in several states. He was connected to at least 36 murders, but some thought he had committed one hundred or more. He was executed in Florida\'s electric chair in 1989. His charm and intelligence made him something of a celebrity during his trial, and his case inspired many novels and films about serial killers.'},
         {class: 'zodiac-killer', name: 'Unknown (The Zodiac Killer)', img: 'images/portraits/zodiac-killer.jpg', bio: 'The self-proclaimed Zodiac Killer was directly linked to at least five murders in Northern California in 1968 and 1969 and may have been responsible for more. After he taunted police and made threats through letters sent to area newspapers from 1969 to 1974, further communication from him abruptly stopped. Despite an intensive search for the killer and the investigation into numerous suspects, no one was ever arrested for the crimes and the case remains open. The mystery surrounding it has been the subject of countless books and even more theories and has been the inspiration for several movies.'}
     ],
-    
+
 // Shuffles array into random order. (Taken from Yates-Fisher algorithm on stack overflow.)
+
     shuffle = function (array) {
       var currentIndex = array.length, temporaryValue, randomIndex;
       // While there remain elements to shuffle...
@@ -41,18 +42,18 @@ var serialKillers = [
         array[randomIndex] = temporaryValue;
         }
         return array;
-    };
+    },
+    firstDivClick = undefined,
+    secondDivClick = undefined,
+    matchCounter = 0;
 
 $(function () {
 
       $board = $('#board');
       $button = $('#new-game');
       $modal = $('#modal');
-      $firstDiv = undefined;
-      $secondDiv = undefined;
-      matchCounter = 0;
 
-  // Start Button should create divs each with the class of the serial killer underneath. Should also be face down. (Iterate through the array and assign index item a div).
+// Start Button should create divs each with the class of the serial killer underneath. Should also be face down. (Iterate through the array and assign index item a div).
 
   startGame = function () {
     shuffle(serialKillers);
@@ -62,40 +63,42 @@ $(function () {
 
   }
 
-  // When click the div should reveal the serial killer underneath.
+// When click the div should reveal the serial killer underneath.
 
   firstClick = function (e) {
-    $firstDiv = e.target;
+     firstDivClick = $(e.target);
 
     $(e.target).removeClass('covered');
-    $('.covered').off('click',firstClick);
+    $('.covered').off('click', firstClick);
     $('.covered').on('click', secondClick);
   };
 
 
-  // Second click should check if the classes match. If they do a modal should appear containing the blurb about the serial killer. If not both should be rehidden.
+// Second click should check if the classes match. If they do a modal should appear containing the blurb about the serial killer. If not both should be rehidden.
 
   secondClick = function (e) {
-    $secondDiv = e.target;
+    secondDivClick = $(e.target);
 
     $(e.target).removeClass('covered');
 
-    if ($firstDiv === $secondDiv) {
-      $('.modal').removeClass('hidden');
-      matchCounter++;
+    if (firstDivClick === secondDivClick) {
+       $('.modal').removeClass('hidden');
+       matchCounter++;
     } else {
-      $firstDiv.addClass('covered');
-      $secondDiv.addClass('covered');
-    }
+        firstDivClick.addClass('covered');
+        secondDivClick.addClass('covered');
+    };
+
     $('.covered').off('click', secondClick);
     $('.covered').on('click', firstClick);
   };
 
-  // Modal should have an x button to close.
 
 
+// Modal should have an x button to close.
 
-  // * Optional Timer, Correct matches counter, If all the board is solved - police modal should show up?
+
+// * Optional Timer, Correct matches counter, If all the board is solved - police modal should show up?
 
 
 

@@ -106,6 +106,8 @@ h2 {
 .covered {
 
   background: url(../images/bloody-handprint.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 /*///// Modal ///// */
