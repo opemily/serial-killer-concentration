@@ -1,7 +1,116 @@
+/* ///// Global ///// */
+
+@font-face{font-family:'YouMurderer'; src:url(../fonts/you_murderer/YouMurderer.ttf) format('truetype');}
+
+body {
+
+  background: url(../images/blood_splatter_background.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+h1, h2 {
+
+  text-align: center;
+  font-family: 'YouMurderer', helvetica,sans-serif;
+  color: red;
+}
+
+h1 {
+
+  font-size: 90px;
+}
+
+h2 {
+  font-size: 40px;
+}
+
+
+
+/* ///// Board ///// */
+
+#board {
+
+  width: 90%;
+  margin: 0 auto;
+}
+
+/* ///// Squares ///// */
+
 .square {
+
+  background: no-repeat fixed center;
   display:inline-block;
-  width: 300px;
+  width: 30%;
   height: 300px;
   border: 1px solid black;
+}
 
+.aileen-wuornos {
+
+  background: url(../images/portraits/aileen-wuornos.jpg);
+}
+
+.belle-gunness {
+
+  background: url(../images/portraits/belle-gunness.jpg);
+}
+
+.charles-manson {
+
+  background: url(../images/portraits/charles-manson.jpg);
+}
+
+.david-berkowitz {
+
+  background: url(../images/portraits/david-berkowitz.jpg);
+}
+
+.dennis-rader {
+
+  background: url(../images/portraits/dennis-rader.jpg);
+}
+
+.ed-gein {
+
+  background: url(../images/portraits/ed-gein.jpg);
+}
+
+.jeffrey-dahmer {
+
+  background: url(../images/portraits/jeffrey-dahmer.jpg);
+}
+
+.john-wayne-gacy {
+
+  background: url(../images/portraits/john-wayne-gacy.jpg);
+}
+
+.richard-ramirez {
+  background: url(../images/portraits/richard-ramirez.jpg);
+}
+
+.richard-speck {
+  background: url(../images/portraits/richard-speck.jpg);
+}
+
+.ted-bundy {
+  background: url(../images/portraits/ted-bundy.jpg);
+
+}
+
+.zodiac-killer {
+  background: url(../images/portraits/zodiac-killer.jpg);
+}
+
+.covered {
+
+  background: url(../images/bloody-handprint.jpg);
+}
+
+/*///// Modal ///// */
+
+.hidden {
+
+  display: none;
 }
