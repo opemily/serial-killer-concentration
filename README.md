@@ -32,16 +32,11 @@ Match infamous serial killers and learn the shocking stories of their crimes.
 
 ## Link to page
 
-
+http://opemily.github.io/serial-killer-concentration/
 
 ## Attributes for Borrowed code
-
-CSS Grid = Thanks to Jon Grover jon@flatironschool.com
 
 
 Fisher-Yates Shuffle = [Thanks to stackoverflow.com](http://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array);
 
 Images & Bios= [Thanks to biography.com](http://www.biography.com/people/groups/serial-killers)
-
-
-Fonts Sourced =
