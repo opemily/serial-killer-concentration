@@ -46,9 +46,15 @@ var serialKillers = [
 
 $(function () {
 
-      $board = $('#board');
-      $button = $('#new-game');
-      $modal = $('#modal');
+    $board = $('#board');
+    $button = $('#new-game');
+    $modal = $('#modal');
+
+// Setup End Game Modal
+
+  endGame = function () {
+    $('#end-game').removeClass('hidden');
+  };
 
 // When click the div should reveal the serial killer underneath.
   firstClick = function (e) {
@@ -57,7 +63,7 @@ $(function () {
     firstAttribute = firstElement.attr('class');
 
 // Switches Event Listeners from first click to second click
-    $('.covered').off('click', firstClick);
+    $('.covered').off();
     $('.covered').on('click', secondClick);
   };
 
@@ -72,11 +78,19 @@ $(function () {
 //Checks for a match between two attributes
     checkMatch = function () {
       if (firstAttribute === secondAttribute) {
-          modalCreation();
-          $('#killer-caught').removeClass('hidden');
+
+          modalCreation(firstElement.attr('id'));
+          $('#gotcha').removeClass('hidden');
+
           firstElement.off();
           secondElement.off();
           matchCounter++;
+
+          if (matchCounter === 12 && $('#gotcha').hasClass('hidden')){
+              endGame();
+          } else if (matchCounter === 12){
+            setTimeout(endGame, 3000);
+          }
       } else {
 
           firstElement.addClass('covered');
@@ -85,33 +99,39 @@ $(function () {
     };
 
 // Delay between flipping cards and checking matches
-    setTimeout(checkMatch, 200);
+    setTimeout(checkMatch, 300);
 
 // Switches Event Listeners from second click to first click
-    $('.covered').off('click', secondClick);
+
+    $('.covered').off();
     $('.covered').on('click', firstClick);
   };
 
 // Setup Modal with Serial Killer Photo, Name, and Bio
-modalCreation = function (indexNumber) {
-  indexNumber = secondElement.attr('id');
-  $('#mugshot').attr('src', serialKillers[indexNumber].img);
-  $('#killer-caught').append('<h3>' + serialKillers[indexNumber].name +'</h3>');
-  $('#killer-caught').append('<p>'+ serialKillers[indexNumber].bio + '</p>');
-};
+  modalCreation = function (id) {
+
+    $('#mugshot').attr('src', serialKillers[id].img);
+    $('#gotcha').append('<h3>' + serialKillers[id].name +'</h3>');
+    $('#gotcha').append('<p>'+ serialKillers[id].bio + '</p>');
+  };
+
+
 
 // Close modal with x button.
   closeGotcha = function () {
 
-    $('.modal').addClass('hidden');
+    $('#gotcha').addClass('hidden');
     $('h3').remove();
     $('p').remove();
   };
 
-  //closeEndGame = function () ""
+  closeEndGame = function () {
 
-  $('#killer-caught .close-window').on('click', closeGotcha);
-  //$('#end-game .close-window').on('click', closeEndGame);
+    $('#end-game').addClass('hidden');
+  };
+
+  $('#gotcha .close-window').on('click', closeGotcha);
+  $('#end-game .close-window').on('click', closeEndGame);
 
 // Create divs each with the class of the serial killer underneath with a class of covered to hide. (Iterate through the array and assign index item a div).
   shuffle(serialKillers);
