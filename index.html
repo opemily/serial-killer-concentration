@@ -7,23 +7,37 @@
 </head>
 <body>
   <header>
+
     <h1> Serial Killer Matching Game</h1>
     <h2> Match the Serial Killers to find out more about them!</h2>
   </header>
   <div class="container">
     
-    <button id="new-game"> Start a New Game</button>
+    <button id="reset-game"> Reset Game </button>
+
+    <br>
 
     <div id="board">
     </div> <!-- #board -->
 
-    <div id="modal" class="hidden">
+    <div id="killer-caught" class="modal hidden">
 
-      <img class="mugshot" src="" alt="">
-      <h3 id="name"> John Doe </h3>
-      <p class="bio"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis voluptatem aut nisi voluptas tempore consectetur iure ipsam delectus autem architecto, voluptatibus, esse perspiciatis eius perferendis, sequi similique corrupti suscipit harum.</p>
+    <img id="mugshot">
+    <div class="close-window"><img src="images/close_window.png" alt="Close Window Icon"></div>
+   
+  </div> <!-- #killer-caught -->
 
-    </div>
+  <div id="caught-all" class="modal hidden">
+
+    <img class="policeman" src="images/policethumbsup.jpg" alt="You Got It">
+    <div class="close-window"><img src="images/close_window.png" alt="Close Window Icon"></div>
+
+    <h3> Congratulations! You caught them all!</h3>
+    <p> Thanks for catching all the serial killers on the loose. The world is a safer place... for now.</p>
+
+    <button id="new-game"> New Game </button>
+  </div> <!-- #caught-all -->
+    
   </div> <!-- .container -->
 </body>
 <script src="js/jquery-2.1.4.min.js"></script>

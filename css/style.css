@@ -1,6 +1,9 @@
 /* ///// Global ///// */
 
-@font-face{font-family:'YouMurderer'; src:url(../fonts/you_murderer/YouMurderer.ttf) format('truetype');}
+@font-face{font-family:'YouMurderer'; src: url(../fonts/you_murderer/YouMurderer.ttf) format('truetype');}
+
+@font-face{font-family:'Top Secret Stamp'; src: url(../fonts/top-secret-stamp/top-secret-stamp.ttf) format('truetype');}
+
 
 body {
 
@@ -12,39 +15,56 @@ body {
 h1, h2 {
 
   text-align: center;
-  font-family: 'YouMurderer', helvetica,sans-serif;
-  color: red;
-}
+ }
 
 h1 {
-
+  margin: 25px auto;
+  font-family: 'YouMurderer', helvetica, sans-serif;
   font-size: 90px;
+  color: rgb(197,0,0);
 }
 
 h2 {
-  font-size: 40px;
+
+  font-family: 'Top Secret Stamp', helvetica,sans-serif;
+  font-size: 30px;
+  margin: 25px auto;
+  color: white;
 }
 
+/* ///// Button ///// */
 
+button {
+  
+  width: 150px;
+  height: 30px;
+  border-radius: 50px;
+  display: block;
+  margin: 0 auto;
+  color: white;
+  font: 16px 'Top Secret Stamp', helvetica,sans-serif;
+}
+
+#new-game {
+
+  background-color: navy;
+  border-color: navy;
+}
+
+#reset-game {
+  background-color: rgb(197,0,0);
+  border-color: rgb(197,0,0);
+}
 
 /* ///// Board ///// */
 
 #board {
-
+  font-size:0;
   width: 90%;
   margin: 0 auto;
 }
 
 /* ///// Squares ///// */
-
-.square {
-
-  background: no-repeat fixed center;
-  display:inline-block;
-  width: 30%;
-  height: 300px;
-  border: 1px solid black;
-}
 
 .aileen-wuornos {
 
@@ -106,11 +126,79 @@ h2 {
 .covered {
 
   background: url(../images/bloody-handprint.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
 }
 
-/*///// Modal ///// */
+.square {
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  display: inline-block;
+  width: 15%;
+  height: 150px;
+  border: 1px solid black;
+}
+
+/*///// Killer Match Modal ///// */
+
+.modal {
+  
+  background: gray;
+  display: block;
+  float:left;
+  position: absolute;
+  z-index: 2;
+  top: 40%;
+  left: 20%;
+  width: 700px;
+  height: 500px;
+  overflow: scroll;
+  text-align: center;
+}
+
+.modal img {
+
+  display: block;
+  height: 200px;
+  width: 200px;
+  margin: 35px auto;
+}
+
+.modal h3 {
+
+  margin: 15px 0;
+}
+
+.modal p {
+
+  font: 20px 'Top Secret Stamp', helvetica,sans-serif;
+}
+
+
+#killer-caught h3 {
+
+  font: 50px 'YouMurderer', helvetica,sans-serif;
+  color: rgb(197,0,0);
+}
+
+#caught-all h3 {
+
+  font: 35px 'Top Secret Stamp', helvetica,sans-serif;
+  color: navy;
+}
+
+.close-window {
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+}
+
+.close-window img {
+
+  width: 25px;
+  height: 25px;
+  margin: 0;
+}
 
 .hidden {
 
