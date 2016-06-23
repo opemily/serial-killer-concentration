@@ -46,112 +46,100 @@ var serialKillers = [
 
 $(function () {
 
-    $board = $('#board');
-    $button = $('#new-game');
-    $modal = $('#modal');
-
-// Setup End Game Modal
-
-  endGame = function () {
-    $('#end-game').removeClass('hidden');
-  };
-
-// When click the div should reveal the serial killer underneath.
-  firstClick = function (e) {
-    $(e.target).removeClass('covered');
-    firstElement = $(e.target);
-    firstAttribute = firstElement.attr('class');
-
-// Switches Event Listeners from first click to second click
-    $('.covered').off();
-    $('.covered').on('click', secondClick);
-  };
-
-// Second click should check if the classes match. If they do a modal should appear containing the blurb about the serial killer. If not both should be rehidden.
-  secondClick = function (e) {
-
-    $(e.target).removeClass('covered');
-
-    secondElement = $(e.target);
-    secondAttribute = secondElement.attr('class');
-
-//Checks for a match between two attributes
-    checkMatch = function () {
-      if (firstAttribute === secondAttribute) {
-
-          modalCreation(firstElement.attr('id'));
-          $('#gotcha').removeClass('hidden');
-
-          firstElement.off();
-          secondElement.off();
-          matchCounter++;
-
-          if (matchCounter === 12 && $('#gotcha').hasClass('hidden')){
-              endGame();
-          } else if (matchCounter === 12){
-            setTimeout(endGame, 3000);
-          }
-      } else {
-
-          firstElement.addClass('covered');
-          secondElement.addClass('covered');
-      }
-    };
-
-// Delay between flipping cards and checking matches
-    setTimeout(checkMatch, 300);
-
-// Switches Event Listeners from second click to first click
-
-    $('.covered').off();
-    $('.covered').on('click', firstClick);
-  };
-
-// Setup Modal with Serial Killer Photo, Name, and Bio
-  modalCreation = function (id) {
-
-    $('#mugshot').attr('src', serialKillers[id].img);
-    $('#gotcha').append('<h3>' + serialKillers[id].name +'</h3>');
-    $('#gotcha').append('<p>'+ serialKillers[id].bio + '</p>');
-  };
-
-
-
-// Close modal with x button.
-  closeGotcha = function () {
-
-    $('#gotcha').addClass('hidden');
-    $('h3').remove();
-    $('p').remove();
-  };
-
-  closeEndGame = function () {
-
-    $('#end-game').addClass('hidden');
-  };
-
-  $('#gotcha .close-window').on('click', closeGotcha);
-  $('#end-game .close-window').on('click', closeEndGame);
-
-// Create divs each with the class of the serial killer underneath with a class of covered to hide. (Iterate through the array and assign index item a div).
-  shuffle(serialKillers);
-  for (var i = 0; i < serialKillers.length; i++) {
-    $('<div></div>').attr('id', i).addClass('square ' + serialKillers[i].class + ' covered').on('click', firstClick).appendTo('#board');
-  };
-
-// Restart Game- remove event Listeners and all current divs, reshuffle and add new divs
-  startGame = function () {
-    $('#board').children('div').off();
-    $('#board').children('div').remove();
-
+  // Create divs each with the class of the serial killer underneath with a class of covered to hide. (Iterate through the array and assign index item a div).
+  var startGame = function(){
     shuffle(serialKillers);
     for (var i = 0; i < serialKillers.length; i++) {
       $('<div></div>').attr('id', i).addClass('square ' + serialKillers[i].class + ' covered').on('click', firstClick).appendTo('#board');
     };
   };
 
-$('#new-game').on('click', startGame);
-$('#reset-game').on('click', startGame);
+  // When click the div should reveal the serial killer underneath.
+  var firstClick = function (e) {
+      $(e.target).removeClass('covered');
+      firstElement = $(e.target);
+      firstAttribute = firstElement.attr('class');
 
+  // Switches Event Listeners from first click to second click
+    $('.covered').off();
+    $('.covered').on('click', secondClick);
+  };
+
+  // Second click should check if the classes match. If they do a modal should appear containing the blurb about the serial killer. If not both should be rehidden.
+  var secondClick = function (e) {
+
+      $(e.target).removeClass('covered');
+
+      secondElement = $(e.target);
+      secondAttribute = secondElement.attr('class');
+
+    //Checks for a match between two attributes
+      if (firstAttribute === secondAttribute) {
+
+        matchMade(firstElement.attr('id'));
+
+        firstElement.off();
+        secondElement.off();
+        matchCounter++;
+      } else {
+        notAMatch = function() {
+          firstElement.addClass('covered');
+          secondElement.addClass('covered');
+          };
+          setTimeout(notAMatch, 300);
+      };
+
+    // Switches Event Listeners from second click to first click
+        $('.covered').off();
+        $('.covered').on('click', firstClick);
+    };
+
+  // Setup Modal with Serial Killer Photo, Name, and Bio
+  var matchMade = function (id) {
+      $('#mugshot').attr('src', serialKillers[id].img);
+      $('#modal').append('<h3 class="match">' + serialKillers[id].name +'</h3>');
+      $('#modal').append('<p>'+ serialKillers[id].bio + '</p>');
+      setTimeout(function()
+          {$('#modal').removeClass('hidden')}, 200);
+    };
+
+  // Setup End Game Modal
+  var endGame = function () {
+      $('#modal').removeClass('hidden');
+      $('#close-window').addClass('hidden');
+      $('#mugshot').attr('src','images/policethumbsup.jpg');
+      $('#modal').append('<h3 class="end"> Congratulations! You caught them all!</h3>');
+      $('#modal').append('<p> Thanks for catching all the serial killers on the loose. The world is a safer place... for now.</p>');
+      $('#modal').append('<button id="new-game"> New Game </button>')
+      $('#new-game').on('click', resetGame);
+    };
+
+  // Close modal with x button.
+  var closeModal = function () {
+        if (matchCounter === 12){
+          $('h3').remove();
+          $('p').remove();
+          endGame();
+
+        } else {
+          $('#modal').addClass('hidden');
+          $('h3').remove();
+          $('p').remove();
+        }
+    };
+
+  $('#modal #close-window').on('click', closeModal);
+
+
+  // Restart Game- remove event Listeners and all current divs, reshuffle and add new divs
+  var resetGame = function () {
+      $('#modal button').remove();
+      $('#board').children('div').off();
+      $('#board').children('div').remove();
+      startGame();
+    };
+
+  startGame();
+  $('#reset-game').on('click', resetGame);
 
 });

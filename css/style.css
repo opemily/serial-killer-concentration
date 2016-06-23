@@ -13,10 +13,10 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
 }
-h1,
-h2 {
+h1, h2 {
     text-align: center;
 }
+
 h1 {
     margin: 25px auto;
     font-family: 'YouMurderer', helvetica, sans-serif;
@@ -29,7 +29,8 @@ h2 {
     margin: 25px auto;
     color: white;
 }
-/* ///// Button ///// */
+
+/* ///// Buttons ///// */
 
 button {
     width: 150px;
@@ -48,6 +49,7 @@ button {
     background-color: rgb(197, 0, 0);
     border-color: rgb(197, 0, 0);
 }
+
 /* ///// Board ///// */
 
 #board {
@@ -55,7 +57,10 @@ button {
     width: 90%;
     margin: 0 auto;
 }
+
 /* ///// Squares ///// */
+
+
 
 .aileen-wuornos {
     background: url(../images/portraits/aileen-wuornos.jpg);
@@ -93,9 +98,11 @@ button {
 .zodiac-killer {
     background: url(../images/portraits/zodiac-killer.jpg);
 }
+
 .covered {
     background: url(../images/bloody-handprint.jpg);
 }
+
 .square {
     background-size: 100% 100%;
     background-repeat: no-repeat;
@@ -104,7 +111,7 @@ button {
     height: 150px;
     border: 1px solid black;
 }
-/*///// Killer Match Modal ///// */
+/*///// Modal ///// */
 
 .modal {
     background: gray;
@@ -132,21 +139,21 @@ button {
     font: 20px 'Top Secret Stamp', helvetica, sans-serif;
     margin: 20px 5px;
 }
-#gotcha h3 {
+.match{
     font: 50px 'YouMurderer', helvetica, sans-serif;
     color: rgb(197, 0, 0);
 }
-#end-game h3 {
+.end{
     font: 35px 'Top Secret Stamp', helvetica, sans-serif;
     color: navy;
 }
-.close-window {
+#close-window {
     position: absolute;
     top: 0;
     right: 0;
     margin: 0;
 }
-.close-window img {
+#close-window img {
     width: 25px;
     height: 25px;
     margin: 0;
